@@ -1,7 +1,7 @@
 #include "PlikZUzytkownikami.h"
 
 
-PlikZUzytkownikami::PlikZUzytkownikami(){
+PlikZUzytkownikami::PlikZUzytkownikami() {
     nazwaPlikuZUzytkownikami = "Uzytkownicy.txt";
 }
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
@@ -31,11 +31,52 @@ bool PlikZUzytkownikami::czyPlikJestPusty() {
 
 string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
     string liniaZDanymiUzytkownika = "";
-    MetodyPomocnicze metodyPomocnicze;
 
     liniaZDanymiUzytkownika += MetodyPomocnicze::konwerjsaIntNaString(uzytkownik.pobierzId())+ '|';
     liniaZDanymiUzytkownika += uzytkownik.pobierzLogin() + '|';
     liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
 
     return liniaZDanymiUzytkownika;
+}
+
+vector <Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
+    vector <Uzytkownik> uzytkownicyVector;
+    string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
+
+    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::in);
+
+    if (plikTekstowy.good() == true) {
+        while (getline(plikTekstowy, daneJednegoUzytkownikaOddzielonePionowymiKreskami)) {
+            uzytkownik = pobierzDaneUzytkownika(daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+            uzytkownicyVector.push_back(uzytkownik);
+        }
+        plikTekstowy.close();
+    }
+    return uzytkownicyVector;
+}
+
+Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
+    string pojedynczaDanaUzytkownika = "";
+    int numerPojedynczejDanejUzytkownika = 1;
+
+    for (int pozycjaZnaku = 0; pozycjaZnaku < daneJednegoUzytkownikaOddzielonePionowymiKreskami.length(); pozycjaZnaku++) {
+        if (daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku] != '|') {
+            pojedynczaDanaUzytkownika += daneJednegoUzytkownikaOddzielonePionowymiKreskami[pozycjaZnaku];
+        } else {
+            switch(numerPojedynczejDanejUzytkownika) {
+            case 1:
+                uzytkownik.ustawId(atoi(pojedynczaDanaUzytkownika.c_str()));
+                break;
+            case 2:
+                uzytkownik.ustawLogin(pojedynczaDanaUzytkownika);
+                break;
+            case 3:
+                uzytkownik.ustawHaslo(pojedynczaDanaUzytkownika);
+                break;
+            }
+            pojedynczaDanaUzytkownika = "";
+            numerPojedynczejDanejUzytkownika++;
+        }
+    }
+    return uzytkownik;
 }
