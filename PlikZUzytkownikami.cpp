@@ -1,11 +1,8 @@
 #include "PlikZUzytkownikami.h"
 
-
-PlikZUzytkownikami::PlikZUzytkownikami() {
-    nazwaPlikuZUzytkownikami = "Uzytkownicy.txt";
-}
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
     string liniaZDanymiUzytkownika = "";
+    fstream plikTekstowy;
     plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::app);
 
     if (plikTekstowy.good() == true) {
@@ -22,11 +19,17 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
 }
 
 bool PlikZUzytkownikami::czyPlikJestPusty() {
-    plikTekstowy.seekg(0, ios::end);
-    if (plikTekstowy.tellg() == 0)
-        return true;
-    else
-        return false;
+    fstream plikTekstowy;
+    plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::in);
+    if (plikTekstowy.good() == true) {
+        plikTekstowy.seekg(0, ios::end);
+        if (plikTekstowy.tellg() == 0)
+            return true;
+        else
+            return false;
+    } else
+        cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac w nim danych." << endl;
+    plikTekstowy.close();
 }
 
 string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
@@ -41,6 +44,8 @@ string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowym
 
 vector <Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
     vector <Uzytkownik> uzytkownicyVector;
+    Uzytkownik uzytkownik;
+    fstream plikTekstowy;
     string daneJednegoUzytkownikaOddzielonePionowymiKreskami = "";
 
     plikTekstowy.open(nazwaPlikuZUzytkownikami.c_str(), ios::in);
@@ -56,6 +61,7 @@ vector <Uzytkownik> PlikZUzytkownikami::wczytajUzytkownikowZPliku() {
 }
 
 Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami) {
+    Uzytkownik uzytkownik;
     string pojedynczaDanaUzytkownika = "";
     int numerPojedynczejDanejUzytkownika = 1;
 
