@@ -101,7 +101,8 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
                 if (uzytkownicy[i].pobierzHaslo() == haslo) {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    return uzytkownicy[i].pobierzId();
+                     idZalogowanegoUzytkownika = uzytkownicy[i].pobierzId();
+                     return idZalogowanegoUzytkownika;
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
@@ -112,4 +113,9 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
     cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
     system("pause");
     return 0;
+}
+
+
+void UzytkownikMenedzer::ustawIdZalogowanegoUzytkownika(int id){
+idZalogowanegoUzytkownika = id;
 }
