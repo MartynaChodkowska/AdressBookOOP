@@ -30,4 +30,9 @@ char KsiazkaAdresowa::pobierzWyborZMenu() {
 
 void KsiazkaAdresowa::wylogujUzytkownika(int idWylogowanegoUzytkownika) {
     uzytkownikMenedzer.ustawIdZalogowanegoUzytkownika(idWylogowanegoUzytkownika);
+    adresatMenedzer.wyczyscAdresaciVector();
+}
+
+void KsiazkaAdresowa::dodawanieAdresata(int idZalogowanegoUzytkownika) {
+    adresatMenedzer.dodawanieAdresata(idZalogowanegoUzytkownika);
 }

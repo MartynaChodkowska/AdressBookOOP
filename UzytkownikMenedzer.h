@@ -4,8 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <windows.h>
-#include <fstream>
-#include <sstream>
+//#include <fstream>
+//#include <sstream>
 
 #include "Uzytkownik.h"
 #include "PlikZUzytkownikami.h"

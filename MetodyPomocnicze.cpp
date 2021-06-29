@@ -1,7 +1,7 @@
 #include "MetodyPomocnicze.h"
 
 
-string MetodyPomocnicze::konwerjsaIntNaString(int liczba) {
+string MetodyPomocnicze::konwersjaIntNaString(int liczba) {
     ostringstream ss;
     ss << liczba;
     string str = ss.str();
@@ -54,11 +54,11 @@ char MetodyPomocnicze::wybierzOpcjeZMenuUzytkownika() {
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj adresata" << endl;
-   // cout << "2. Wyszukaj po imieniu" << endl;
-   // cout << "3. Wyszukaj po nazwisku" << endl;
+    // cout << "2. Wyszukaj po imieniu" << endl;
+    // cout << "3. Wyszukaj po nazwisku" << endl;
     cout << "4. Wyswietl adresatow" << endl;
-   // cout << "5. Usun adresata" << endl;
-   // cout << "6. Edytuj adresata" << endl;
+    // cout << "5. Usun adresata" << endl;
+    // cout << "6. Edytuj adresata" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Zmien haslo" << endl;
     cout << "8. Wyloguj sie" << endl;
@@ -69,6 +69,33 @@ char MetodyPomocnicze::wybierzOpcjeZMenuUzytkownika() {
     return wybor;
 }
 
-char MetodyPomocnicze::pobierzWyborZMenu(){
+char MetodyPomocnicze::pobierzWyborZMenu() {
     return wybor;
 }
+
+string MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst) {
+    if (!tekst.empty()) {
+        transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
+        tekst[0] = toupper(tekst[0]);
+    }
+    return tekst;
+}
+
+
+string MetodyPomocnicze::pobierzLiczbe(string tekst, int pozycjaZnaku) {
+    string liczba = "";
+    while(isdigit(tekst[pozycjaZnaku]) == true) {
+        liczba += tekst[pozycjaZnaku];
+        pozycjaZnaku ++;
+    }
+    return liczba;
+}
+
+int MetodyPomocnicze::konwersjaStringNaInt(string liczba) {
+    int liczbaInt;
+    istringstream iss(liczba);
+    iss >> liczbaInt;
+
+    return liczbaInt;
+}
+
