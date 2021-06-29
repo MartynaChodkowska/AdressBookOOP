@@ -35,7 +35,7 @@ bool PlikZUzytkownikami::czyPlikJestPusty() {
 string PlikZUzytkownikami::zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik) {
     string liniaZDanymiUzytkownika = "";
 
-    liniaZDanymiUzytkownika += MetodyPomocnicze::konwerjsaIntNaString(uzytkownik.pobierzId())+ '|';
+    liniaZDanymiUzytkownika += MetodyPomocnicze::konwersjaIntNaString(uzytkownik.pobierzId())+ '|';
     liniaZDanymiUzytkownika += uzytkownik.pobierzLogin() + '|';
     liniaZDanymiUzytkownika += uzytkownik.pobierzHaslo() + '|';
 

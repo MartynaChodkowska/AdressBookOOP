@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    KsiazkaAdresowa ksiazka("Uzytkownicy3.txt");
+    KsiazkaAdresowa ksiazka("Uzytkownicy3.txt", "Adresaci.txt");
 
     char wybor;
     int idZalogowanegoUzytkownika = 0;
@@ -48,8 +48,7 @@ int main() {
 
             switch (wybor) {
             case '1':
-                cout << "dodaj adresata" << endl;
-                system("pause");
+                ksiazka.dodawanieAdresata(idZalogowanegoUzytkownika);
                 //idOstatniegoAdresata = dodajAdresata(adresaci, idZalogowanegoUzytkownika, idOstatniegoAdresata);
                 break;
             case '2':
@@ -63,7 +62,7 @@ int main() {
 
             case '4':
                 cout << "wyswietl wszystkich adresatow" << endl;
-                //wyswietlWszystkichAdresatow(adresaci);
+               // ksiazka.wypiszWszystkichAdresatow();
                 break;
             case '5':
                 cout << "usun adresata" << endl;
