@@ -50,7 +50,7 @@ void AdresatMenedzer::wypiszWszystkichAdresatow() {
             cout << "Nazwisko:           " << adresaci[i].pobierzNazwisko() << endl;
             cout << "Numer telefonu:     " << adresaci[i].pobierzNumerTelefonu() << endl;
             cout << "Email:              " << adresaci[i].pobierzEmail() << endl;
-            cout << "Adres:              " << adresaci[i].pobierzEmail() << endl;
+            cout << "Adres:              " << adresaci[i].pobierzAdres() << endl;
         }
         cout << endl;
     } else {

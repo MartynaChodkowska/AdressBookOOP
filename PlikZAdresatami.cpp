@@ -9,6 +9,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZPliku(int idZalogowanegoUzytko
     int idOstatniegoAdresataZPliku = 0;
     fstream plikTekstowy;
     plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::in);
+    int nrlinii=1;
 
     if (plikTekstowy.good() == true) {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
@@ -27,17 +28,18 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZPliku(int idZalogowanegoUzytko
         idOstatniegoAdresataZPliku = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
         idOstatniegoAdresata = idOstatniegoAdresataZPliku;
     } else idOstatniegoAdresata = 0;
+
     return adresaciVector;
 }
 
 int PlikZAdresatami::pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami) {
-    int pozycjaRozpoczeciaIdAdresata = 0;
-    string idAdresataPrzedKonwersja = MetodyPomocnicze::pobierzLiczbe(daneJednegoAdresataOddzielonePionowymiKreskami, pozycjaRozpoczeciaIdAdresata);
-    int idAdresata = MetodyPomocnicze::konwersjaStringNaInt(idAdresataPrzedKonwersja);
-    return idAdresata;
+    int pozycjaRozpoczeciaIdUzytkownika = daneJednegoAdresataOddzielonePionowymiKreskami.find_first_of('|') + 1;
+    int idUzytkownika = MetodyPomocnicze::konwersjaStringNaInt(MetodyPomocnicze::pobierzLiczbe(daneJednegoAdresataOddzielonePionowymiKreskami, pozycjaRozpoczeciaIdUzytkownika));
+
+    return idUzytkownika;
 }
 
-Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami){
+Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami) {
     Adresat adresat;
     string pojedynczaDanaAdresata = "";
     int numerPojedynczejDanejAdresata = 1;
@@ -91,7 +93,7 @@ void PlikZAdresatami::ustawIdOstatniegoAdresata(int noweId) {
     idOstatniegoAdresata = noweId;
 }
 
-void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat){
+void PlikZAdresatami::dopiszAdresataDoPliku(Adresat adresat) {
     string liniaZDanymiAdresata = "";
     fstream plikTekstowy;
     plikTekstowy.open(nazwaPlikuZAdresatami.c_str(), ios::out | ios::app);

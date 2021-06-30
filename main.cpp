@@ -3,15 +3,16 @@
 
 #include "KsiazkaAdresowa.h"
 #include "MetodyPomocnicze.h"
+#include "PlikZAdresatami.h"
 
 using namespace std;
 
 int main() {
     KsiazkaAdresowa ksiazka("Uzytkownicy3.txt", "Adresaci.txt");
 
+
     char wybor;
     int idZalogowanegoUzytkownika = 0;
-
     while (true) {
             idZalogowanegoUzytkownika = ksiazka.pobierzIdZalogowanegoUzytkownika();
             ksiazka.wyswietlMenu(idZalogowanegoUzytkownika);
@@ -49,29 +50,10 @@ int main() {
             switch (wybor) {
             case '1':
                 ksiazka.dodawanieAdresata(idZalogowanegoUzytkownika);
-                //idOstatniegoAdresata = dodajAdresata(adresaci, idZalogowanegoUzytkownika, idOstatniegoAdresata);
                 break;
-            case '2':
-                cout << "wyszukaj po imieniu" << endl;
-                //wyszukajAdresatowPoImieniu(adresaci);
-                break;
-            case '3':
-                cout << "wyszukaj po nazwisku" << endl;
-                //wyszukajAdresatowPoNazwisku(adresaci);
-                break;
-
-            case '4':
+             case '4':
                 cout << "wyswietl wszystkich adresatow" << endl;
-               // ksiazka.wypiszWszystkichAdresatow();
-                break;
-            case '5':
-                cout << "usun adresata" << endl;
-               // idUsunietegoAdresata = usunAdresata(adresaci);
-               //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
-                break;
-            case '6':
-                cout << "edytuj adresata" << endl;
-               // edytujAdresata(adresaci);
+               ksiazka.wypiszWszystkichAdresatow();
                 break;
             case '7':
                 cout << "zmiana hasla" << endl;
