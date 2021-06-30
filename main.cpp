@@ -3,22 +3,20 @@
 
 #include "KsiazkaAdresowa.h"
 #include "MetodyPomocnicze.h"
-#include "PlikZAdresatami.h"
 
 using namespace std;
 
 int main() {
     KsiazkaAdresowa ksiazka("Uzytkownicy3.txt", "Adresaci.txt");
 
-
     char wybor;
     int idZalogowanegoUzytkownika = 0;
     while (true) {
-            idZalogowanegoUzytkownika = ksiazka.pobierzIdZalogowanegoUzytkownika();
-            ksiazka.wyswietlMenu(idZalogowanegoUzytkownika);
-            wybor = ksiazka.pobierzWyborZMenu();
-            if (idZalogowanegoUzytkownika == 0){
-                switch (wybor) {
+        idZalogowanegoUzytkownika = ksiazka.pobierzIdZalogowanegoUzytkownika();
+        ksiazka.wyswietlMenu(idZalogowanegoUzytkownika);
+        wybor = ksiazka.pobierzWyborZMenu();
+        if (idZalogowanegoUzytkownika == 0) {
+            switch (wybor) {
             case '1':
                 ksiazka.rejestracjaUzytkownika();
                 break;
@@ -33,46 +31,26 @@ int main() {
                 system("pause");
                 break;
             }
-
         }
-
-            else{
-
-                /*     if (adresaci.empty() == true)
-                            // Pobieramy idOstatniegoAdresata, po to aby zoptymalizowac program.
-                            // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
-                            // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
-                            idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-            }
-           */
-
-
+        else {
             switch (wybor) {
             case '1':
                 ksiazka.dodawanieAdresata(idZalogowanegoUzytkownika);
                 break;
-             case '4':
+            case '4':
                 cout << "wyswietl wszystkich adresatow" << endl;
-               ksiazka.wypiszWszystkichAdresatow();
+                ksiazka.wypiszWszystkichAdresatow();
                 break;
             case '7':
                 cout << "zmiana hasla" << endl;
-                //zmianaHaslaZalogowanegoUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
+                ksiazka.zmianaHaslaZalogowanegoUzytkownika();
                 break;
             case '8':
                 ksiazka.wylogujUzytkownika(0);
-               // adresaci.clear();
                 break;
             }
-
+        }
     }
-}
-    // ksiazka.wypiszWszystkichUzytkownikow();
-
-    //ksiazka.rejestracjaUzytkownika();
-    //ksiazka.wypiszWszystkichUzytkownikow();
-
-
 
     return 0;
 }
