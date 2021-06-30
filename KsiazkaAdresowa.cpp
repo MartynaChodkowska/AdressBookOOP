@@ -40,3 +40,7 @@ void KsiazkaAdresowa::dodawanieAdresata(int idZalogowanegoUzytkownika) {
 void KsiazkaAdresowa::wypiszWszystkichAdresatow(){
 adresatMenedzer.wypiszWszystkichAdresatow();
 }
+
+void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika(){
+uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+}
