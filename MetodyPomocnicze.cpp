@@ -69,10 +69,6 @@ char MetodyPomocnicze::wybierzOpcjeZMenuUzytkownika() {
     return wybor;
 }
 
-char MetodyPomocnicze::pobierzWyborZMenu() {
-    return wybor;
-}
-
 string MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst) {
     if (!tekst.empty()) {
         transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);

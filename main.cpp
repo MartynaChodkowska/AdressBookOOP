@@ -7,14 +7,13 @@
 using namespace std;
 
 int main() {
-    KsiazkaAdresowa ksiazka("Uzytkownicy3.txt", "Adresaci.txt");
+    KsiazkaAdresowa ksiazka("Uzytkownicy.txt", "Adresaci.txt");
 
     char wybor;
 
     while (true) {
-        ksiazka.wyswietlMenu(ksiazka.pobierzIdZalogowanegoUzytkownika());
-        wybor = ksiazka.pobierzWyborZMenu();
-        if (ksiazka.pobierzIdZalogowanegoUzytkownika() == 0) {
+        if (!ksiazka.czyUzytkownikJestZalogowany()) {
+            wybor = ksiazka.wybierzOpcjeZMenuGlownego();
             switch (wybor) {
             case '1':
                 ksiazka.rejestracjaUzytkownika();
@@ -30,14 +29,14 @@ int main() {
                 system("pause");
                 break;
             }
-        }
-        else {
+        } else {
+            wybor = ksiazka.wybierzOpcjeZMenuUzytkownika();
             switch (wybor) {
             case '1':
                 ksiazka.dodawanieAdresata();
                 break;
             case '4':
-                 ksiazka.wypiszWszystkichAdresatow();
+                ksiazka.wypiszWszystkichAdresatow();
                 break;
             case '7':
                 ksiazka.zmianaHaslaZalogowanegoUzytkownika();
@@ -48,6 +47,5 @@ int main() {
             }
         }
     }
-
     return 0;
 }

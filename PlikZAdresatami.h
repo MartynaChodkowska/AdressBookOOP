@@ -27,8 +27,6 @@ public:
     bool dopiszAdresataDoPliku(Adresat adresat);
     vector<Adresat> wczytajAdresatowZPliku(int idZalogowanegoUzytkownika);
     int pobierzIdOstatniegoAdresata();
-    //void ustawIdOstatniegoAdresata(int noweId);
 };
-
 
 #endif // PLIKZADRESATAMI_H

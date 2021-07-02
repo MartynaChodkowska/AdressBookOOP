@@ -24,18 +24,18 @@ class UzytkownikMenedzer {
     bool czyIstniejeLogin(string login);
 
 public:
-    UzytkownikMenedzer(string nazwaPlikuZUZytkownikami) : plikZUzytkownikami(nazwaPlikuZUZytkownikami){
-    idZalogowanegoUzytkownika = 0;
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+    UzytkownikMenedzer(string nazwaPlikuZUZytkownikami) : plikZUzytkownikami(nazwaPlikuZUZytkownikami) {
+        idZalogowanegoUzytkownika = 0;
+        uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
     };
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
-    void wypiszWszystkichUzytkownikow();
+    void zmianaHaslaZalogowanegoUzytkownika();
+    void wylogowanieUzytkownika();
     int pobierzIdZalogowanegoUzytkownika();
     void ustawIdZalogowanegoUzytkownika(int id);
-    void zmianaHaslaZalogowanegoUzytkownika();
     bool czyUzytkownikJestZalogowany();
-    void wylogowanieUzytkownika();
+
 };
 
 #endif // UZYTKOWNIKMENEDZER_H
