@@ -65,21 +65,6 @@ bool UzytkownikMenedzer::czyIstniejeLogin(string login) {
         }
     }
     return false;
-
-    /* vector <Uzytkownik>::iterator itr = uzytkownicy.begin();
-     while (itr != uzytkownicy.end()) {
-         if (itr -> pobierzLogin() == login) {
-             cout << endl << "Istnieje uzytkownik o takim loginie." << endl;
-             return true;
-         } else
-             itr++;
-     }
-     return false;*/
-}
-
-
-void UzytkownikMenedzer::wczytajUzytkownikowZPliku() {
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 }
 
 int UzytkownikMenedzer::pobierzIdZalogowanegoUzytkownika() {
