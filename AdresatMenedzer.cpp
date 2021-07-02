@@ -15,6 +15,27 @@ void AdresatMenedzer::dodawanieAdresata() {
    system("pause");
 }
 
+void AdresatMenedzer::wypiszWszystkichAdresatow() {
+    system("cls");
+    if (!adresaci.empty()) {
+        cout << "             >>> ADRESACI <<<" << endl;
+        cout << "-----------------------------------------------" << endl;
+        for (int i = 0; i < adresaci.size(); i++) {
+            cout << endl << "Id:                 " << adresaci[i].pobierzId() << endl;
+            cout << "Imie:               " << adresaci[i].pobierzImie() << endl;
+            cout << "Nazwisko:           " << adresaci[i].pobierzNazwisko() << endl;
+            cout << "Numer telefonu:     " << adresaci[i].pobierzNumerTelefonu() << endl;
+            cout << "Email:              " << adresaci[i].pobierzEmail() << endl;
+            cout << "Adres:              " << adresaci[i].pobierzAdres() << endl;
+        }
+        cout << endl;
+    } else {
+        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
+    }
+    system("pause");
+}
+
+
 Adresat AdresatMenedzer::podajDaneNowegoAdresata() {
     Adresat adresat;
     string linia;
@@ -40,24 +61,4 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata() {
     adresat.ustawAdres(MetodyPomocnicze::wczytajLinie());
 
     return adresat;
-}
-
-void AdresatMenedzer::wypiszWszystkichAdresatow() {
-    system("cls");
-    if (!adresaci.empty()) {
-        cout << "             >>> ADRESACI <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        for (int i = 0; i < adresaci.size(); i++) {
-            cout << endl << "Id:                 " << adresaci[i].pobierzId() << endl;
-            cout << "Imie:               " << adresaci[i].pobierzImie() << endl;
-            cout << "Nazwisko:           " << adresaci[i].pobierzNazwisko() << endl;
-            cout << "Numer telefonu:     " << adresaci[i].pobierzNumerTelefonu() << endl;
-            cout << "Email:              " << adresaci[i].pobierzEmail() << endl;
-            cout << "Adres:              " << adresaci[i].pobierzAdres() << endl;
-        }
-        cout << endl;
-    } else {
-        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
-    }
-    system("pause");
 }

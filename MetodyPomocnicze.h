@@ -10,18 +10,15 @@
 using namespace std;
 
 class MetodyPomocnicze {
-    char wybor;
 public:
-    static string konwersjaIntNaString(int liczba);
     static char wczytajZnak();
     static string wczytajLinie();
+    static string pobierzLiczbe(string tekst, int pozycjaZnaku);
     static char wybierzOpcjeZMenuGlownego();
     static char wybierzOpcjeZMenuUzytkownika();
-    char pobierzWyborZMenu();
     static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
-    static string pobierzLiczbe(string tekst, int pozycjaZnaku);
     static int konwersjaStringNaInt(string liczba);
-
+    static string konwersjaIntNaString(int liczba);
 };
 
 
