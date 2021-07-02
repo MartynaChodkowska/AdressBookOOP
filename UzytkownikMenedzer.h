@@ -29,11 +29,13 @@ public:
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
     };
     void rejestracjaUzytkownika();
-    int logowanieUzytkownika();
+    void logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     int pobierzIdZalogowanegoUzytkownika();
     void ustawIdZalogowanegoUzytkownika(int id);
     void zmianaHaslaZalogowanegoUzytkownika();
+    bool czyUzytkownikJestZalogowany();
+    void wylogowanieUzytkownika();
 };
 
 #endif // UZYTKOWNIKMENEDZER_H
