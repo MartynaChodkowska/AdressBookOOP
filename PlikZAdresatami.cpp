@@ -139,6 +139,49 @@ string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKre
     return liniaZDanymiAdresata;
 }
 
+void PlikZAdresatami::usunWybranaLinieWPliku(string liniaZDanymiAdresata) {
+    fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
+    string wczytanaLinia = "";
+    int numerWczytanejLinii = 1, zapisanyAdresat = 0;
+    int idAdresataDoUsuniecia = 0, idAdresataSprawdzanego = 0;
+
+    odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    tymczasowyPlikTekstowy.open(NAZWA_PLIKU_TYMCZASOWEGO_Z_ADRESATAMI.c_str(), ios::out | ios::app);
+
+    if (odczytywanyPlikTekstowy.good() == true) {
+        while (getline(odczytywanyPlikTekstowy, wczytanaLinia)) {
+            // Tych przypadkow jest tyle, gdyz chcemy osiagnac taki efekt,
+            // aby na koncu pliku nie bylo pustej linii
+            idAdresataDoUsuniecia = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(liniaZDanymiAdresata);
+            idAdresataSprawdzanego = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(wczytanaLinia);
+            if (idAdresataDoUsuniecia == idAdresataSprawdzanego) {}
+            else if((idAdresataDoUsuniecia != idAdresataSprawdzanego) && zapisanyAdresat == 0) {
+                tymczasowyPlikTekstowy << wczytanaLinia;
+                zapisanyAdresat++;
+            } else {
+                tymczasowyPlikTekstowy << endl << wczytanaLinia;
+                zapisanyAdresat++;
+            }
+            numerWczytanejLinii++;
+        }
+        odczytywanyPlikTekstowy.close();
+        tymczasowyPlikTekstowy.close();
+
+        MetodyPomocnicze::usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
+        MetodyPomocnicze::zmienNazwePliku(NAZWA_PLIKU_TYMCZASOWEGO_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
+    }
+}
+
+void PlikZAdresatami::usunDaneWybranegoAdresata(Adresat adresat) {
+    string liniaZDanymiAdresata = "";
+
+    liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
+    usunWybranaLinieWPliku(liniaZDanymiAdresata);
+    ustawIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(liniaZDanymiAdresata));
+
+    cout << endl << "Adresat zostal usuniety" << endl << endl;
+}
+
 void PlikZAdresatami::edytujWybranaLinieWPliku(string liniaZDanymiAdresataOddzielonePionowymiKreskami) {
     fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
     string wczytanaLinia = "";
@@ -172,13 +215,36 @@ void PlikZAdresatami::edytujWybranaLinieWPliku(string liniaZDanymiAdresataOddzie
 }
 
 void PlikZAdresatami::zaktualizujDaneWybranegoAdresata(Adresat adresat) {
-    //  int numerLiniiEdytowanegoAdresata = 0;
     string liniaZDanymiAdresata = "";
 
-    //numerLiniiEdytowanegoAdresata = zwrocNumerLiniiSzukanegoAdresata(idEdytowanegoAdresata);
     liniaZDanymiAdresata = zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(adresat);
     edytujWybranaLinieWPliku(liniaZDanymiAdresata);
 
     cout << endl << "Dane zostaly zaktualizowane." << endl << endl;
+}
 
+
+void PlikZAdresatami::ustawIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(int idUsuwanegoAdresata) {
+    if (idUsuwanegoAdresata == idOstatniegoAdresata)
+        idOstatniegoAdresata = pobierzZPlikuIdOstatniegoAdresata();
+}
+
+int PlikZAdresatami::pobierzZPlikuIdOstatniegoAdresata() {
+    int idOstatniegoAdresata = 0;
+    string daneJednegoAdresataOddzielonePionowymiKreskami = "";
+    string daneOstaniegoAdresataWPliku = "";
+    fstream plikTekstowy;
+    plikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+
+    if (plikTekstowy.good() == true) {
+        while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {}
+        daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
+        plikTekstowy.close();
+    } else
+        cout << "Nie udalo sie otworzyc pliku i wczytac danych." << endl;
+
+    if (daneOstaniegoAdresataWPliku != "") {
+        idOstatniegoAdresata = pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(daneOstaniegoAdresataWPliku);
+    }
+    return idOstatniegoAdresata;
 }

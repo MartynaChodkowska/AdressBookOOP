@@ -41,6 +41,10 @@ void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
     adresatMenedzer->wypiszWszystkichAdresatow();
 }
 
+void KsiazkaAdresowa::usunAdresata(){
+    adresatMenedzer->usunAdresata();
+}
+
 void KsiazkaAdresowa::edytujAdresata(){
     adresatMenedzer->edytujAdresata();
 }

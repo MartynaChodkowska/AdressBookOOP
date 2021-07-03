@@ -29,6 +29,7 @@ public:
     void wypiszAdresatowZZadanymImieniem();
     void wypiszAdresatowZZadanymNazwiskiem();
     void wypiszWszystkichAdresatow();
+    void usunAdresata();
     void edytujAdresata();
     void zmianaHaslaZalogowanegoUzytkownika();
     void wylogujUzytkownika();
