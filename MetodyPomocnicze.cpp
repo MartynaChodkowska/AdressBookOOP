@@ -31,6 +31,21 @@ string MetodyPomocnicze::wczytajLinie() {
     return wejscie;
 }
 
+int MetodyPomocnicze::wczytajLiczbeCalkowita() {
+    string wejscie = "";
+    int liczba = 0;
+
+    while (true) {
+        getline(cin, wejscie);
+
+        stringstream myStream(wejscie);
+        if (myStream >> liczba)
+            break;
+        cout << "To nie jest liczba. Wpisz ponownie. " << endl;
+    }
+    return liczba;
+}
+
 char MetodyPomocnicze::wybierzOpcjeZMenuGlownego() {
     char wybor;
 
@@ -57,13 +72,31 @@ char MetodyPomocnicze::wybierzOpcjeZMenuUzytkownika() {
     cout << "2. Wyszukaj po imieniu" << endl;
     cout << "3. Wyszukaj po nazwisku" << endl;
     cout << "4. Wyswietl adresatow" << endl;
-    // cout << "5. Usun adresata" << endl;
-    // cout << "6. Edytuj adresata" << endl;
+    //cout << "5. Usun adresata" << endl;
+    cout << "6. Edytuj adresata" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Zmien haslo" << endl;
     cout << "8. Wyloguj sie" << endl;
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
+    wybor = wczytajZnak();
+
+    return wybor;
+}
+
+char MetodyPomocnicze::wybierzOpcjeZMenuEdycja(){
+    char wybor;
+
+    cout << endl << "   >>> MENU  EDYCJA <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Ktore dane zaktualizowac: " << endl;
+    cout << "1 - Imie" << endl;
+    cout << "2 - Nazwisko" << endl;
+    cout << "3 - Numer telefonu" << endl;
+    cout << "4 - Email" << endl;
+    cout << "5 - Adres" << endl;
+    cout << "6 - Powrot " << endl;
+    cout << endl << "Twoj wybor: ";
     wybor = wczytajZnak();
 
     return wybor;
@@ -95,3 +128,14 @@ int MetodyPomocnicze::konwersjaStringNaInt(string liczba) {
     return liczbaInt;
 }
 
+void MetodyPomocnicze::usunPlik(string nazwaPlikuZRozszerzeniem) {
+    if (remove(nazwaPlikuZRozszerzeniem.c_str()) == 0) {}
+    else
+        cout << "Nie udalo sie usunac pliku " << nazwaPlikuZRozszerzeniem << endl;
+}
+
+void MetodyPomocnicze::zmienNazwePliku(string staraNazwa, string nowaNazwa) {
+    if (rename(staraNazwa.c_str(), nowaNazwa.c_str()) == 0) {}
+    else
+        cout << "Nazwa pliku nie zostala zmieniona." << staraNazwa << endl;
+}
