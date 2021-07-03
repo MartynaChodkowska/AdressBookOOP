@@ -27,11 +27,14 @@ public:
     void logowanieUzytkownika();
     void dodawanieAdresata();
     void wypiszWszystkichAdresatow();
+    void wypiszAdresatowZZadanymImieniem();
+    void wypiszAdresatowZZadanymNazwiskiem();
     void zmianaHaslaZalogowanegoUzytkownika();
     void wylogujUzytkownika();
     bool czyUzytkownikJestZalogowany();
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
+
 };
 
 #endif // KSIAZKAADRESOWA_H

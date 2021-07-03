@@ -35,6 +35,12 @@ int main() {
             case '1':
                 ksiazka.dodawanieAdresata();
                 break;
+            case '2':
+                ksiazka.wypiszAdresatowZZadanymImieniem();
+                break;
+            case '3':
+                ksiazka.wypiszAdresatowZZadanymNazwiskiem();
+                break;
             case '4':
                 ksiazka.wypiszWszystkichAdresatow();
                 break;

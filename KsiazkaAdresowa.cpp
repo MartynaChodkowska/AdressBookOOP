@@ -51,6 +51,14 @@ void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
     adresatMenedzer->wypiszWszystkichAdresatow();
 }
 
+void KsiazkaAdresowa::wypiszAdresatowZZadanymImieniem() {
+    adresatMenedzer->wypiszAdresatowZZadanymImieniem();
+}
+
+void KsiazkaAdresowa::wypiszAdresatowZZadanymNazwiskiem(){
+    adresatMenedzer->wypiszAdresatowZZadanymNazwiskiem();
+}
+
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
     uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
 }
@@ -69,3 +77,4 @@ char KsiazkaAdresowa::wybierzOpcjeZMenuGlownego() {
 char KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika() {
     return MetodyPomocnicze::wybierzOpcjeZMenuUzytkownika();
 }
+

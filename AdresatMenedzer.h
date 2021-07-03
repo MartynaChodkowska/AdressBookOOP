@@ -22,6 +22,8 @@ public:
     };
     void dodawanieAdresata();
     void wypiszWszystkichAdresatow();
+    void wypiszAdresatowZZadanymImieniem();
+    void wypiszAdresatowZZadanymNazwiskiem();
 };
 
 

@@ -7,12 +7,11 @@ void AdresatMenedzer::dodawanieAdresata() {
     adresat = podajDaneNowegoAdresata();
 
     adresaci.push_back(adresat);
-   if(plikZAdresatami.dopiszAdresataDoPliku(adresat)){
-    cout << "Nowy adresat zostal dodany." << endl;
-   }
-   else
-    cout << "Blad. Nie udalo sie dodac nowego adresata do pliku." << endl;
-   system("pause");
+    if(plikZAdresatami.dopiszAdresataDoPliku(adresat)) {
+        cout << "Nowy adresat zostal dodany." << endl;
+    } else
+        cout << "Blad. Nie udalo sie dodac nowego adresata do pliku." << endl;
+    system("pause");
 }
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
@@ -35,6 +34,63 @@ void AdresatMenedzer::wypiszWszystkichAdresatow() {
     system("pause");
 }
 
+void AdresatMenedzer::wypiszAdresatowZZadanymImieniem() {
+    string szukanieImie;
+
+    cout << "podaj imie adresata, ktorego szukasz: ";
+    szukanieImie = MetodyPomocnicze::wczytajLinie();
+
+    system("cls");
+    cout << "        >>> ADRESACI z imieniem: " << szukanieImie << " <<<" << endl;
+    cout << "-----------------------------------------------" << endl;
+
+    if (!adresaci.empty()) {
+        for (vector<Adresat>::iterator itr = adresaci.begin(); itr < adresaci.end(); itr++) {
+            if(itr->pobierzImie() == szukanieImie) {
+
+                cout << endl << "Id:                 " << itr->pobierzId() << endl;
+                cout << "Imie:               " << itr->pobierzImie() << endl;
+                cout << "Nazwisko:           " << itr->pobierzNazwisko() << endl;
+                cout << "Numer telefonu:     " << itr->pobierzNumerTelefonu() << endl;
+                cout << "Email:              " << itr->pobierzEmail() << endl;
+                cout << "Adres:              " << itr->pobierzAdres() << endl;
+            }
+            cout << endl;
+        }
+    } else {
+        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
+    }
+    system("pause");
+}
+
+void AdresatMenedzer::wypiszAdresatowZZadanymNazwiskiem() {
+    string szukanieNazwisko;
+
+    cout << "podaj imie adresata, ktorego szukasz: ";
+    szukanieNazwisko = MetodyPomocnicze::wczytajLinie();
+
+    system("cls");
+    cout << "        >>> ADRESACI z nazwiskiem: " << szukanieNazwisko << " <<<" << endl;
+    cout << "-----------------------------------------------" << endl;
+
+    if (!adresaci.empty()) {
+        for (vector<Adresat>::iterator itr = adresaci.begin(); itr < adresaci.end(); itr++) {
+            if(itr->pobierzNazwisko() == szukanieNazwisko) {
+
+                cout << endl << "Id:                 " << itr->pobierzId() << endl;
+                cout << "Imie:               " << itr->pobierzImie() << endl;
+                cout << "Nazwisko:           " << itr->pobierzNazwisko() << endl;
+                cout << "Numer telefonu:     " << itr->pobierzNumerTelefonu() << endl;
+                cout << "Email:              " << itr->pobierzEmail() << endl;
+                cout << "Adres:              " << itr->pobierzAdres() << endl;
+            }
+            cout << endl;
+        }
+    } else {
+        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
+    }
+    system("pause");
+}
 
 Adresat AdresatMenedzer::podajDaneNowegoAdresata() {
     Adresat adresat;
