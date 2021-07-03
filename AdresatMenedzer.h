@@ -24,6 +24,8 @@ public:
     void wypiszWszystkichAdresatow();
     void wypiszAdresatowZZadanymImieniem();
     void wypiszAdresatowZZadanymNazwiskiem();
+    void usunAdresata();
+    void edytujAdresata();
 };
 
 

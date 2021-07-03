@@ -44,6 +44,12 @@ int main() {
             case '4':
                 ksiazka.wypiszWszystkichAdresatow();
                 break;
+            case '5':
+                ksiazka.usunAdresata();
+                break;
+            case '6':
+                ksiazka.edytujAdresata();
+                break;
             case '7':
                 ksiazka.zmianaHaslaZalogowanegoUzytkownika();
                 break;
